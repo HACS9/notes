@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="list-header">
+  <h1 class="list-title">{{ .Title }}</h1>
+  {{ with .Content }}<div class="list-intro">{{ . }}</div>{{ end }}
+</header>
+<section class="post-list">
+  {{ range .Pages.ByDate.Reverse }}
+    {{ partial "post-item.html" . }}
+  {{ else }}
+    <p class="empty">Na razie pusto.</p>
+  {{ end }}
+</section>
+{{ end }}

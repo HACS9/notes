@@ -1,0 +1,39 @@
+baseURL = "https://notes.domowo.app/"
+languageCode = "pl-PL"
+defaultContentLanguage = "pl"
+title = "Dziennik decyzji"
+enableRobotsTXT = true
+summaryLength = 40
+
+[params]
+  podtytul = "Notatki z systematycznego inwestowania"
+  opis = "Prywatny dziennik decyzji inwestycyjnych: protokoły, kryteria, wyniki w procentach. Bez rekomendacji."
+  stopka = "Materiał edukacyjny, prywatne notatki z eksperymentu. Nie stanowi rekomendacji ani doradztwa inwestycyjnego."
+
+[taxonomies]
+  seria = "serie"
+
+[menus]
+  [[menus.main]]
+    name = "Finanse"
+    pageRef = "/finanse"
+    weight = 10
+  [[menus.main]]
+    name = "Metodyka"
+    pageRef = "/metodyka"
+    weight = 80
+  [[menus.main]]
+    name = "O blogu"
+    pageRef = "/o-blogu"
+    weight = 90
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[markup.goldmark.extensions.typographer]
+  leftDoubleQuote = "&bdquo;"
+  rightDoubleQuote = "&rdquo;"

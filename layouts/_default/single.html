@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  <header class="article-header">
+    {{ if .IsPage }}{{ with .Parent }}{{ if not .IsHome }}<a href="{{ .RelPermalink }}" class="back-link">{{ .Title }}</a>{{ end }}{{ end }}{{ end }}
+    {{ if eq .Type "finanse" }}
+    <div class="article-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+      {{ with .Params.serie }}<span class="separator">·</span> {{ range $i, $s := . }}{{ if $i }}, {{ end }}<a href="{{ (site.GetPage (printf "/serie/%s" ($s | urlize))).RelPermalink }}">{{ $s }}</a>{{ end }}{{ end }}
+      {{ with .Params.dane_na }}<span class="separator">·</span> dane na {{ . }}{{ end }}
+    </div>
+    {{ end }}
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{ with .Params.lead }}<p class="article-lead">{{ . }}</p>{{ end }}
+  </header>
+  <div class="article-body">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}

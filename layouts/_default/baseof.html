@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }} – {{ site.Params.podtytul }}{{ else }}{{ .Title }} – {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Params.lead }}{{ . }}{{ else }}{{ site.Params.opis }}{{ end }}{{ end }}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+  {{ range .AlternativeOutputFormats -}}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ site.Title }}">
+  {{ end -}}
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+</head>
+<body>
+  <div class="container">
+    {{ partial "header.html" . }}
+    <main class="content">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+  </div>
+</body>
+</html>

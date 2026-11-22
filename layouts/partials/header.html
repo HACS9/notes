@@ -1,0 +1,12 @@
+<header class="site-header">
+  <a href="/" class="logo">{{ site.Title }}</a>
+  <p class="tagline">{{ site.Params.podtytul }}</p>
+  <nav class="main-nav" aria-label="Sekcje">
+    <ul>
+      {{ $current := . }}
+      {{ range site.Menus.main }}
+      <li><a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+</header>

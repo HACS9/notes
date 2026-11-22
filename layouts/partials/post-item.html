@@ -1,0 +1,8 @@
+<article class="post-item">
+  <div class="post-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+    {{ with .Params.serie }}<span class="separator">·</span> {{ range $i, $s := . }}{{ if $i }}, {{ end }}<a href="{{ (site.GetPage (printf "/serie/%s" ($s | urlize))).RelPermalink }}">{{ $s }}</a>{{ end }}{{ end }}
+  </div>
+  <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  {{ with .Params.lead }}<p class="post-lead">{{ . }}</p>{{ else }}<p class="post-lead">{{ .Summary | plainify | truncate 220 }}</p>{{ end }}
+</article>
